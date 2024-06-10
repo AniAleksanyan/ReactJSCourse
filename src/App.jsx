@@ -47,24 +47,35 @@ function App() {
     setUsers(temp);
   }
 
-  const salaryDown = id => {
-    let temp = [...users];
-    let obj = temp.find(x=>x.id == id);
+  // const salaryDown = id => {
+  //   let temp = [...users];
+  //   let obj = temp.find(x=>x.id == id);
 
-    if (obj.salary == 50000) {
-      return
-    }
-    obj.salary -= 50000;
-    setUsers(temp);
+  //   if (obj.salary == 50000) {
+  //     return
+  //   }
+  //   obj.salary -= 50000;
+  //   setUsers(temp);
+  // }
+
+  const salaryDown = id => {
+    setUsers(users.map(elm => 
+      elm.id != id ? elm : {...elm, salary: Math.max(elm.salary -50000, 50000)}
+    )) 
   }
   
+  // const removeUser = id => {
+  //   let temp = [...users];
+  //   let obj = temp.find(x=>x.id == id);
+
+  //   temp.splice(obj, 1);
+
+  //   setUsers(temp);
+  // }
   const removeUser = id => {
-    let temp = [...users];
-    let obj = temp.find(x=>x.id == id);
-
-    temp.splice(obj, 1);
-
-    setUsers(temp);
+    setUsers(users.filter(elm => 
+      elm.id != id
+    )) 
   }
 
   return (
